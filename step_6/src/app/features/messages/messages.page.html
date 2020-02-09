@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      Messages
+    </ion-list-header>
+    <ion-item *ngFor="let msg of messages">
+      <ion-text color="primary">
+        <h4>{{msg.message}}</h4>
+      </ion-text>
+      <ion-text color="secondary">
+        <p>{{msg.username}}</p>
+      </ion-text>
+      <p><i>{{msg.ts | date: 'HH:mm dd/MM/yyyy'}}</i></p>
+      </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <input type="text" [(ngModel)]="message" placeholder="Your message" />
+    <button ion-button (click)="postMessage();" color="light" item-end>Send</button>
+  </ion-toolbar>
+</ion-footer>
