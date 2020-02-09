@@ -1,0 +1,49 @@
+<ion-header no-border>
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-back-button color="primary" defaultHref="login"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding class="form-content">
+    <h1>Inscription</h1>
+    <form class="form" [formGroup]="validationsForm" (ngSubmit)="tryRegister(validationsForm.value)">
+      <ion-item>
+        <ion-label position="floating" color="primary">Adresse email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.email">
+          <div class="error-message"
+            *ngIf="validationsForm.get('email').hasError(validation.type) && (validationsForm.get('email').dirty || validationsForm.get('email').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating" color="primary">Mot de passe</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validationMessages.password">
+          <div class="error-message"
+            *ngIf="validationsForm.get('password').hasError(validation.type) && (validationsForm.get('password').dirty || validationsForm.get('password').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <div>
+      <ion-item>
+        <ion-label position="floating" color="primary">url Photo</ion-label>
+        <ion-input type="text" formControlName="urlPhoto"></ion-input>
+      </ion-item>
+      </div>
+  
+      <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validationsForm.valid">Inscription
+      </ion-button>
+      <label class="error-message">{{errorMessage}}</label>
+      <label class="success-message">{{successMessage}}</label>
+    </form>
+    <p class="go-to-login">Déjà un compte ?&nbsp;<a (click)="goLoginPage()">Connexion.</a></p>
+  </ion-content>
+  
